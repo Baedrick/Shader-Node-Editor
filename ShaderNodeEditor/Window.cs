@@ -5,20 +5,28 @@ using OpenTK.Windowing.GraphicsLibraryFramework;
 
 namespace ShaderNodeEditor
 {
-    public class Game : GameWindow
+    public class Window : GameWindow
     {
         private readonly float[] vertices =
         {
             -0.5f, -0.5f, 0.0f, // bottom left
             0.5f, -0.5f, 0.0f,  // bottom right
-            0.0f, 0.5f, 0.0f    // top
+            -0.5f, 0.5f, 0.0f,  // top left
+            0.5f, 0.5f, 0.0f    // top right
+        };
+
+        private readonly uint[] indices =
+        {
+            0, 1, 2,    // first triangle
+            1, 2, 3     // second triangle
         };
 
         private Shader shader;
         private int vertexBufferObject;
+        private int elementBufferObject;
+        private int vertexArrayObject;
         
-        public Game(int width, int height, string title) 
-            : base(GameWindowSettings.Default, new NativeWindowSettings() { Size = (width, height), Title = title }) { }
+        public Window(int width, int height, string title) : base(GameWindowSettings.Default, new NativeWindowSettings() { Size = (width, height), Title = title }) { }
 
         protected override void OnLoad()
         {
@@ -28,8 +36,18 @@ namespace ShaderNodeEditor
             vertexBufferObject = GL.GenBuffer();
             GL.BindBuffer(BufferTarget.ArrayBuffer, vertexBufferObject);
             GL.BufferData(BufferTarget.ArrayBuffer, vertices.Length * sizeof(float), vertices, BufferUsageHint.StaticDraw);
+            
+            vertexArrayObject = GL.GenVertexArray();
+            GL.BindVertexArray(vertexArrayObject);
+            GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
+            GL.EnableVertexAttribArray(0);
+            
+            elementBufferObject = GL.GenBuffer();
+            GL.BindBuffer(BufferTarget.ElementArrayBuffer, elementBufferObject);
+            GL.BufferData(BufferTarget.ElementArrayBuffer, indices.Length * sizeof(uint), indices, BufferUsageHint.StaticDraw);
 
-            shader = new Shader("shader.vert", "shader.frag");
+            shader = new Shader("Shaders/shader.vert", "Shaders/shader.frag");
+            shader.Use();
         }
 
         protected override void OnRenderFrame(FrameEventArgs args)
@@ -37,7 +55,9 @@ namespace ShaderNodeEditor
             base.OnRenderFrame(args);
             GL.Clear(ClearBufferMask.ColorBufferBit);
             
-            // code goes here
+            shader.Use();
+            GL.BindVertexArray(vertexArrayObject);
+            GL.DrawElements(PrimitiveType.Triangles, indices.Length, DrawElementsType.UnsignedInt, 0);
             
             Context.SwapBuffers();
         }

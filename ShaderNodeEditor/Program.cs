@@ -6,8 +6,8 @@ namespace ShaderNodeEditor
     {
         private static void Main(string[] args)
         {
-            var game = new Game(800, 600, "LearnOpenTK");
-            game.Run();
+            var window = new Window(800, 600, "LearnOpenTK");
+            window.Run();
         }
     }
 }

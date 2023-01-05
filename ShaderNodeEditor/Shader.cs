@@ -19,21 +19,8 @@ namespace ShaderNodeEditor
             var fragmentShader = GL.CreateShader(ShaderType.FragmentShader);
             GL.ShaderSource(fragmentShader, fragmentShaderSource);
             
-            GL.CompileShader(vertexShader);
-            GL.GetShader(vertexShader, ShaderParameter.CompileStatus, out var vertSuccess);
-            if (vertSuccess == 0)
-            {
-                var infoLog = GL.GetShaderInfoLog(vertexShader);
-                Console.WriteLine(infoLog);
-            }
-            
-            GL.CompileShader(fragmentShader);
-            GL.GetShader(fragmentShader, ShaderParameter.CompileStatus, out var fragSuccess);
-            if (fragSuccess == 0)
-            {
-                var infoLog = GL.GetShaderInfoLog(fragmentShader);
-                Console.WriteLine(infoLog);
-            }
+            CreateShader(vertexShader);
+            CreateShader(fragmentShader);
 
             handle = GL.CreateProgram();
             
@@ -53,6 +40,17 @@ namespace ShaderNodeEditor
             GL.DetachShader(handle, fragmentShader);
             GL.DeleteShader(fragmentShader);
             GL.DeleteShader(vertexShader);
+        }
+
+        private static void CreateShader(int shader)
+        {
+            GL.CompileShader(shader);
+            GL.GetShader(shader, ShaderParameter.CompileStatus, out var vertSuccess);
+            if (vertSuccess != 0) {
+                return;
+            }
+            var infoLog = GL.GetShaderInfoLog(shader);
+            Console.WriteLine(infoLog);
         }
 
         public void Use()
