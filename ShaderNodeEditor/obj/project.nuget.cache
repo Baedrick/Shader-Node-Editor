@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "NnV4dMwm+hx75WDIXOk4cK78TQ5aEDGkEoSpR+qXqYzinZUtPxpVFjNorVbTJXlVIv5sqxD/UXcVPDiZl7c42Q==",
+  "dgSpecHash": "mqNF9452sIsQFmflH/T6BUl8+DowsJVpwDzyzDh88ITQuUmCTq6whM97NmmsPzRkJvd14TUUub8V9OejkbCGwQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\dedri\\Desktop\\ShaderNodeEditor\\ShaderNodeEditor\\ShaderNodeEditor.csproj",
   "expectedPackageFiles": [
@@ -15,6 +15,7 @@
     "C:\\Users\\dedri\\.nuget\\packages\\opentk.windowing.common\\4.7.5\\opentk.windowing.common.4.7.5.nupkg.sha512",
     "C:\\Users\\dedri\\.nuget\\packages\\opentk.windowing.desktop\\4.7.5\\opentk.windowing.desktop.4.7.5.nupkg.sha512",
     "C:\\Users\\dedri\\.nuget\\packages\\opentk.windowing.graphicslibraryframework\\4.7.5\\opentk.windowing.graphicslibraryframework.4.7.5.nupkg.sha512",
+    "C:\\Users\\dedri\\.nuget\\packages\\stbimagesharp\\2.27.13\\stbimagesharp.2.27.13.nupkg.sha512",
     "C:\\Users\\dedri\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512"
   ],
   "logs": []

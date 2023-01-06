@@ -9,6 +9,7 @@
 
     <ItemGroup>
       <PackageReference Include="OpenTK" Version="4.7.5" />
+      <PackageReference Include="StbImageSharp" Version="2.27.13" />
     </ItemGroup>
 
     <ItemGroup>
@@ -20,6 +21,10 @@
       </Content>
       <None Remove="shader.frag" />
       <None Remove="shader.vert" />
+      <None Remove="Resources\wall.jpg" />
+      <Content Include="Resources\wall.jpg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
 </Project>

@@ -1,9 +1,6 @@
 ﻿using OpenTK.Graphics.OpenGL4;
-using OpenTK.Windowing.Common;
-using OpenTK.Windowing.Desktop;
-using OpenTK.Windowing.GraphicsLibraryFramework;
 
-namespace ShaderNodeEditor
+namespace ShaderNodeEditor.Common
 {
     public class Shader : IDisposable
     {
@@ -56,6 +53,11 @@ namespace ShaderNodeEditor
         public void Use()
         {
             GL.UseProgram(handle);
+        }
+        
+        public int GetAttribLocation(string attribName)
+        {
+            return GL.GetAttribLocation(handle, attribName);
         }
 
         private bool disposedValue = false;

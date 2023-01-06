@@ -30,3 +30,5 @@ C:\Users\dedri\Desktop\ShaderNodeEditor\ShaderNodeEditor\obj\Debug\net6.0\Shader
 C:\Users\dedri\Desktop\ShaderNodeEditor\ShaderNodeEditor\obj\Debug\net6.0\ShaderNodeEditor.genruntimeconfig.cache
 C:\Users\dedri\Desktop\ShaderNodeEditor\ShaderNodeEditor\bin\Debug\net6.0\Shaders\shader.frag
 C:\Users\dedri\Desktop\ShaderNodeEditor\ShaderNodeEditor\bin\Debug\net6.0\Shaders\shader.vert
+C:\Users\dedri\Desktop\ShaderNodeEditor\ShaderNodeEditor\bin\Debug\net6.0\Resources\wall.jpg
+C:\Users\dedri\Desktop\ShaderNodeEditor\ShaderNodeEditor\bin\Debug\net6.0\StbImageSharp.dll
