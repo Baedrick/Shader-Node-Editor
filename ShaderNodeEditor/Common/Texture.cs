@@ -15,6 +15,7 @@ namespace ShaderNodeEditor.Common
         public static Texture LoadFromFile(string filePath)
         {
             var handle = GL.GenTexture();
+            GL.ActiveTexture(TextureUnit.Texture0);
             GL.BindTexture(TextureTarget.Texture2D, handle);
             StbImage.stbi_set_flip_vertically_on_load(1);
 
@@ -39,9 +40,10 @@ namespace ShaderNodeEditor.Common
             return new Texture(handle);
         }
 
-        private void Use()
+        public void Use(TextureUnit textureUnit)
         {
-            return;
+            GL.ActiveTexture(textureUnit);
+            GL.BindTexture(TextureTarget.Texture2D, handle);
         }
     }
 }

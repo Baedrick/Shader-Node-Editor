@@ -8,12 +8,12 @@ namespace ShaderNodeEditor
 {
     public class Window : GameWindow
     {
-        private readonly float[] vertices =
+        private readonly float[] mesh =
         {
             -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, // bottom left
             0.5f, -0.5f, 0.0f, 1.0f, 0.0f,  // bottom right
             -0.5f, 0.5f, 0.0f, 0.0f, 1.0f,  // top left
-            0.5f, 0.5f, 0.0f, 1.0f, 1.0f    // top right
+            0.5f, 0.5f, 0.0f, 1.0f, 1.0f,   // top right
         };
 
         private readonly uint[] indices =
@@ -23,11 +23,11 @@ namespace ShaderNodeEditor
         };
 
         private Shader? shader;
-        private Texture? texture;
-        private int vertexBufferObject;
-        private int elementBufferObject;
+        private Texture? texture0;
+        private Texture? texture1;
         private int vertexArrayObject;
-        
+        private int elementBufferObject;
+
         public Window(int width, int height, string title) : base(GameWindowSettings.Default, new NativeWindowSettings() { Size = (width, height), Title = title }) { }
 
         protected override void OnLoad()
@@ -38,9 +38,9 @@ namespace ShaderNodeEditor
             vertexArrayObject = GL.GenVertexArray();
             GL.BindVertexArray(vertexArrayObject);
             
-            vertexBufferObject = GL.GenBuffer();
+            var vertexBufferObject = GL.GenBuffer();
             GL.BindBuffer(BufferTarget.ArrayBuffer, vertexBufferObject);
-            GL.BufferData(BufferTarget.ArrayBuffer, vertices.Length * sizeof(float), vertices, BufferUsageHint.StaticDraw);
+            GL.BufferData(BufferTarget.ArrayBuffer, mesh.Length * sizeof(float), mesh, BufferUsageHint.StaticDraw);
 
             elementBufferObject = GL.GenBuffer();
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, elementBufferObject);
@@ -57,18 +57,27 @@ namespace ShaderNodeEditor
                 var texCoord = shader.GetAttribLocation("aTexCoord");
                 GL.EnableVertexAttribArray(texCoord);
                 GL.VertexAttribPointer(texCoord, 2, VertexAttribPointerType.Float, false, 5 * sizeof(float), 3 * sizeof(float));
+                
+                texture0 = Texture.LoadFromFile("Resources/wall.jpg");
+                texture0.Use(TextureUnit.Texture0);
+                shader.SetInt("texture0", 0);
+                
+                texture1 = Texture.LoadFromFile("Resources/leather.jpg");
+                texture1.Use(TextureUnit.Texture1);
+                shader.SetInt("texture1", 1);
             }
-            
-            texture = Texture.LoadFromFile("Resources/wall.jpg");
         }
 
         protected override void OnRenderFrame(FrameEventArgs args)
         {
             base.OnRenderFrame(args);
             GL.Clear(ClearBufferMask.ColorBufferBit);
-            
-            shader?.Use();
             GL.BindVertexArray(vertexArrayObject);
+            
+            texture0?.Use(TextureUnit.Texture0);
+            texture1?.Use(TextureUnit.Texture1);
+            shader?.Use();
+            
             GL.DrawElements(PrimitiveType.Triangles, indices.Length, DrawElementsType.UnsignedInt, 0);
             
             Context.SwapBuffers();

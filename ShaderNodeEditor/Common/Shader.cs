@@ -54,6 +54,12 @@ namespace ShaderNodeEditor.Common
         {
             GL.UseProgram(handle);
         }
+
+        public void SetInt(string property, int value)
+        {
+            var location = GL.GetUniformLocation(handle, property);
+            GL.Uniform1(location, value);
+        }
         
         public int GetAttribLocation(string attribName)
         {
