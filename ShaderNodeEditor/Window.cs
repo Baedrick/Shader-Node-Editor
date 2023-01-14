@@ -1,4 +1,5 @@
-﻿using OpenTK.Graphics.OpenGL4;
+﻿using System.Runtime.InteropServices;
+using OpenTK.Graphics.OpenGL4;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 using OpenTK.Windowing.GraphicsLibraryFramework;
@@ -8,6 +9,8 @@ namespace ShaderNodeEditor
 {
     public class Window : GameWindow
     {
+        private static DebugProc DebugMessageDelegate = OnDebugMessage;
+        
         private readonly float[] mesh =
         {
             -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, // bottom left
@@ -26,6 +29,7 @@ namespace ShaderNodeEditor
         private Texture? texture0;
         private Texture? texture1;
         private int vertexArrayObject;
+        private int vertexBufferObject;
         private int elementBufferObject;
 
         public Window(int width, int height, string title) : base(GameWindowSettings.Default, new NativeWindowSettings() { Size = (width, height), Title = title }) { }
@@ -38,7 +42,7 @@ namespace ShaderNodeEditor
             vertexArrayObject = GL.GenVertexArray();
             GL.BindVertexArray(vertexArrayObject);
             
-            var vertexBufferObject = GL.GenBuffer();
+            vertexBufferObject = GL.GenBuffer();
             GL.BindBuffer(BufferTarget.ArrayBuffer, vertexBufferObject);
             GL.BufferData(BufferTarget.ArrayBuffer, mesh.Length * sizeof(float), mesh, BufferUsageHint.StaticDraw);
 
@@ -46,26 +50,27 @@ namespace ShaderNodeEditor
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, elementBufferObject);
             GL.BufferData(BufferTarget.ElementArrayBuffer, indices.Length * sizeof(uint), indices, BufferUsageHint.StaticDraw);
 
-            shader = new Shader("Shaders/shader.vert", "Shaders/shader.frag");
-            
-            if (shader != null) {
-                shader.Use();
-                var vertexPosition = shader.GetAttribLocation("aPosition");
-                GL.EnableVertexAttribArray(vertexPosition);
-                GL.VertexAttribPointer(vertexPosition, 3, VertexAttribPointerType.Float, false, 5 * sizeof(float), 0);
-
-                var texCoord = shader.GetAttribLocation("aTexCoord");
-                GL.EnableVertexAttribArray(texCoord);
-                GL.VertexAttribPointer(texCoord, 2, VertexAttribPointerType.Float, false, 5 * sizeof(float), 3 * sizeof(float));
-                
-                texture0 = Texture.LoadFromFile("Resources/wall.jpg");
-                texture0.Use(TextureUnit.Texture0);
-                shader.SetInt("texture0", 0);
-                
-                texture1 = Texture.LoadFromFile("Resources/leather.jpg");
-                texture1.Use(TextureUnit.Texture1);
-                shader.SetInt("texture1", 1);
+            shader = new Shader("Shaders/default.vert", "Shaders/default.frag");
+            if (shader == null) {
+                return;
             }
+            
+            shader.Use();
+            var vertexPosition = shader.GetAttribLocation("aPosition");
+            GL.EnableVertexAttribArray(vertexPosition);
+            GL.VertexAttribPointer(vertexPosition, 3, VertexAttribPointerType.Float, false, 5 * sizeof(float), 0);
+
+            var texCoord = shader.GetAttribLocation("aTexCoord");
+            GL.EnableVertexAttribArray(texCoord);
+            GL.VertexAttribPointer(texCoord, 2, VertexAttribPointerType.Float, false, 5 * sizeof(float), 3 * sizeof(float));
+                
+            texture0 = Texture.LoadFromFile("Resources/wall.jpg");
+            texture0.Use(TextureUnit.Texture0);
+            shader.SetInt("texture0", 0);
+                
+            texture1 = Texture.LoadFromFile("Resources/leather.jpg");
+            texture1.Use(TextureUnit.Texture1);
+            shader.SetInt("texture1", 1);
         }
 
         protected override void OnRenderFrame(FrameEventArgs args)
@@ -102,6 +107,15 @@ namespace ShaderNodeEditor
         {
             base.OnResize(e);
             GL.Viewport(0, 0, e.Width, e.Height);
+        }
+        
+        private static void OnDebugMessage(DebugSource source, DebugType type, int id, DebugSeverity severity, int length, IntPtr pMessage, IntPtr pUserParam)
+        {
+            var message = Marshal.PtrToStringUTF8(pMessage, length);
+            Console.WriteLine("[{0} source={1} type={2} id={3}] {4}", severity, source, type, id, message);
+            if (type == DebugType.DebugTypeError) {
+                throw new Exception(message);
+            }
         }
     }
 }

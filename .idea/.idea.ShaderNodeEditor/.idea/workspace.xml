@@ -6,12 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="52df4908-5d73-4669-b639-6301dee14576" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ShaderNodeEditor/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ShaderNodeEditor/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ShaderNodeEditor/Common/Shader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShaderNodeEditor/Common/Shader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ShaderNodeEditor/Common/Texture.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShaderNodeEditor/Common/Texture.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ShaderNodeEditor/Shaders/shader.frag" beforeDir="false" afterPath="$PROJECT_DIR$/ShaderNodeEditor/Shaders/shader.frag" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShaderNodeEditor/ShaderNodeEditor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ShaderNodeEditor/ShaderNodeEditor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShaderNodeEditor/Shaders/shader.frag" beforeDir="false" afterPath="$PROJECT_DIR$/ShaderNodeEditor/Shaders/default.frag" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShaderNodeEditor/Shaders/shader.vert" beforeDir="false" afterPath="$PROJECT_DIR$/ShaderNodeEditor/Shaders/default.vert" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ShaderNodeEditor/Window.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShaderNodeEditor/Window.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ShaderNodeEditor/bin/Debug/net6.0/ShaderNodeEditor.dll" beforeDir="false" afterPath="$PROJECT_DIR$/ShaderNodeEditor/bin/Debug/net6.0/ShaderNodeEditor.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ShaderNodeEditor/bin/Debug/net6.0/ShaderNodeEditor.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/ShaderNodeEditor/bin/Debug/net6.0/ShaderNodeEditor.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShaderNodeEditor/bin/Debug/net6.0/Shaders/shader.frag" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShaderNodeEditor/bin/Debug/net6.0/Shaders/shader.vert" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShaderNodeEditor/obj/Debug/net6.0/ShaderNodeEditor.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ShaderNodeEditor/obj/Debug/net6.0/ShaderNodeEditor.csproj.FileListAbsolute.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ShaderNodeEditor/obj/Debug/net6.0/ShaderNodeEditor.dll" beforeDir="false" afterPath="$PROJECT_DIR$/ShaderNodeEditor/obj/Debug/net6.0/ShaderNodeEditor.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ShaderNodeEditor/obj/Debug/net6.0/ShaderNodeEditor.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/ShaderNodeEditor/obj/Debug/net6.0/ShaderNodeEditor.pdb" afterDir="false" />
     </list>
@@ -36,7 +39,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.C#&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -69,7 +72,10 @@
       <option name="presentableId" value="Default" />
       <updated>1672909240325</updated>
       <workItem from="1672909241756" duration="13767000" />
-      <workItem from="1672973607515" duration="7090000" />
+      <workItem from="1672973607515" duration="7310000" />
+      <workItem from="1672984835572" duration="221000" />
+      <workItem from="1672985072982" duration="3003000" />
+      <workItem from="1673161039292" duration="614000" />
     </task>
     <servers />
   </component>
@@ -91,5 +97,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

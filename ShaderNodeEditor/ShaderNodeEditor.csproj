@@ -13,10 +13,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="Shaders\shader.frag">
+      <Content Include="Shaders\default.frag">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
-      <Content Include="Shaders\shader.vert">
+      <Content Include="Shaders\default.vert">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
       <None Remove="shader.frag" />
