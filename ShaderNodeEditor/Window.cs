@@ -9,7 +9,7 @@ namespace ShaderNodeEditor
 {
 	public class Window : GameWindow
 	{
-		private static DebugProc DebugMessageDelegate = OnDebugMessage;
+		private static readonly DebugProc DEBUG_MESSAGE_DELEGATE = OnDebugMessage;
 		
 		private readonly float[] mesh =
 		{
@@ -84,6 +84,10 @@ namespace ShaderNodeEditor
 			shader?.Use();
 			
 			GL.DrawElements(PrimitiveType.Triangles, indices.Length, DrawElementsType.UnsignedInt, 0);
+			
+			// Debug Callback
+			GL.DebugMessageCallback(DEBUG_MESSAGE_DELEGATE, IntPtr.Zero);
+			GL.Enable(EnableCap.DebugOutput);
 			
 			Context.SwapBuffers();
 		}
