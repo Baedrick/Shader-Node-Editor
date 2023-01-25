@@ -1,4 +1,6 @@
-﻿using OpenTK.Graphics.OpenGL4;
+﻿using System.Reflection.Metadata;
+using OpenTK.Graphics.OpenGL4;
+using OpenTK.Mathematics;
 
 namespace ShaderNodeEditor.Common
 {
@@ -59,6 +61,13 @@ namespace ShaderNodeEditor.Common
 		{
 			var location = GL.GetUniformLocation(handle, property);
 			GL.Uniform1(location, value);
+		}
+		
+		public void SetMatrix4(string name, Matrix4 data)
+		{
+			GL.UseProgram(handle);
+			var location = GL.GetUniformLocation(handle, name);
+			GL.UniformMatrix4(location, true, ref data);
 		}
 		
 		public int GetAttribLocation(string attribName)
