@@ -5,6 +5,7 @@ using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 using OpenTK.Windowing.GraphicsLibraryFramework;
 using ShaderNodeEditor.Common;
+using ShaderNodeEditor.Utility;
 
 namespace ShaderNodeEditor
 {
@@ -19,34 +20,38 @@ namespace ShaderNodeEditor
 			-0.5f, 0.5f, 0.0f, 0.0f, 1.0f,  // top left
 			0.5f, 0.5f, 0.0f, 1.0f, 1.0f,   // top right
 		};
-
+		
 		private readonly uint[] indices =
 		{
 			0, 1, 2,    // first triangle
 			1, 2, 3     // second triangle
 		};
-
+		
 		private Shader? shader;
 		private Texture? texture0;
 		private Texture? texture1;
 		private int vertexArrayObject;
 		private int vertexBufferObject;
 		private int elementBufferObject;
-
+		
 		private double time;
-
+		
 		private Matrix4 modelMatrix;
 		private Matrix4 viewMatrix;
 		private Matrix4 projectionMatrix;
 
+		private ArcBallCamera camera;
+		
 		public Window(int width, int height, string title) : base(GameWindowSettings.Default, new NativeWindowSettings() { Size = (width, height), Title = title }) { }
-
+		
 		protected override void OnLoad()
 		{
 			base.OnLoad();
 			GL.ClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 			
 			GL.Enable(EnableCap.DepthTest);
+
+			camera = new ArcBallCamera();
 			
 			vertexArrayObject = GL.GenVertexArray();
 			GL.BindVertexArray(vertexArrayObject);
@@ -62,7 +67,7 @@ namespace ShaderNodeEditor
 			shader = new Shader("Shaders/default.vert", "Shaders/default.frag");
 			shader.Use();
 			
-			viewMatrix = Matrix4.CreateTranslation(0.0f, 0.0f, -3.0f);
+			//viewMatrix = Matrix4.CreateTranslation(0.0f, 0.0f, -3.0f);
 			projectionMatrix = Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(45f), Size.X / (float) Size.Y, 0.1f, 100.0f);
 			
 			var vertexPosition = shader.GetAttribLocation("aPosition");
@@ -81,7 +86,7 @@ namespace ShaderNodeEditor
 			texture1.Use(TextureUnit.Texture1);
 			shader.SetInt("texture1", 1);
 		}
-
+		
 		protected override void OnRenderFrame(FrameEventArgs args)
 		{
 			base.OnRenderFrame(args);
@@ -96,6 +101,7 @@ namespace ShaderNodeEditor
 			shader?.Use();
 			
 			modelMatrix = Matrix4.Identity * Matrix4.CreateRotationX((float)MathHelper.DegreesToRadians(time));
+			viewMatrix = CameraUtils.CreateFpsViewMatrix(new Vector3(0.0f, 0.0f, -3.0f), 0.0f, 180.0f);
 
 			shader?.SetMatrix4("model", modelMatrix);
 			shader?.SetMatrix4("view", viewMatrix);
@@ -109,7 +115,7 @@ namespace ShaderNodeEditor
 			
 			Context.SwapBuffers();
 		}
-
+		
 		protected override void OnUpdateFrame(FrameEventArgs args)
 		{
 			base.OnUpdateFrame(args);
@@ -118,17 +124,26 @@ namespace ShaderNodeEditor
 				Close();
 			}
 		}
-
+		
 		protected override void OnUnload()
 		{
 			base.OnUnload();
 			shader?.Dispose();
 		}
-
+		
 		protected override void OnResize(ResizeEventArgs e)
 		{
 			base.OnResize(e);
 			GL.Viewport(0, 0, e.Width, e.Height);
+		}
+		
+		protected override void OnMouseMove(MouseMoveEventArgs e)
+		{
+			base.OnMouseMove(e);
+			var previousPosition = new Vector2(e.Position.X - e.DeltaX, e.Position.Y - e.DeltaY);
+			var currentPosition = new Vector2(e.Position.X, e.Position.Y);
+
+			camera.Rotate(previousPosition, currentPosition);
 		}
 		
 		private static void OnDebugMessage(DebugSource source, DebugType type, int id, DebugSeverity severity, int length, IntPtr pMessage, IntPtr pUserParam)

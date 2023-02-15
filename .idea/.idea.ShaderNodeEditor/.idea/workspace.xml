@@ -7,15 +7,16 @@
     <list default="true" id="52df4908-5d73-4669-b639-6301dee14576" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ShaderNodeEditor/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ShaderNodeEditor/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ShaderNodeEditor/Common/Shader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShaderNodeEditor/Common/Shader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ShaderNodeEditor/Shaders/default.vert" beforeDir="false" afterPath="$PROJECT_DIR$/ShaderNodeEditor/Shaders/default.vert" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ShaderNodeEditor/Window.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShaderNodeEditor/Window.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ShaderNodeEditor/bin/Debug/net6.0/ShaderNodeEditor.dll" beforeDir="false" afterPath="$PROJECT_DIR$/ShaderNodeEditor/bin/Debug/net6.0/ShaderNodeEditor.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ShaderNodeEditor/bin/Debug/net6.0/ShaderNodeEditor.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/ShaderNodeEditor/bin/Debug/net6.0/ShaderNodeEditor.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ShaderNodeEditor/bin/Debug/net6.0/Shaders/default.vert" beforeDir="false" afterPath="$PROJECT_DIR$/ShaderNodeEditor/bin/Debug/net6.0/Shaders/default.vert" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ShaderNodeEditor/bin/Debug/net6.0/ref/ShaderNodeEditor.dll" beforeDir="false" afterPath="$PROJECT_DIR$/ShaderNodeEditor/bin/Debug/net6.0/ref/ShaderNodeEditor.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShaderNodeEditor/obj/Debug/net6.0/ShaderNodeEditor.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ShaderNodeEditor/obj/Debug/net6.0/ShaderNodeEditor.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ShaderNodeEditor/obj/Debug/net6.0/ShaderNodeEditor.dll" beforeDir="false" afterPath="$PROJECT_DIR$/ShaderNodeEditor/obj/Debug/net6.0/ShaderNodeEditor.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ShaderNodeEditor/obj/Debug/net6.0/ShaderNodeEditor.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/ShaderNodeEditor/obj/Debug/net6.0/ShaderNodeEditor.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ShaderNodeEditor/obj/Debug/net6.0/ref/ShaderNodeEditor.dll" beforeDir="false" afterPath="$PROJECT_DIR$/ShaderNodeEditor/obj/Debug/net6.0/ref/ShaderNodeEditor.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShaderNodeEditor/obj/ShaderNodeEditor.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/ShaderNodeEditor/obj/ShaderNodeEditor.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShaderNodeEditor/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/ShaderNodeEditor/obj/rider.project.restore.info" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +24,8 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/dd8f59cb271b4e099e18a711f3163ddb4ae00/4c/050cbc11/Matrix4.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/dd8f59cb271b4e099e18a711f3163ddb4ae00/84/08b81c3c/Quaternion.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f41b5d2e16124f509f33bd9da6f81e23453800/30/5ea2b1f3/DebugProc.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -87,6 +90,7 @@
       <workItem from="1673161039292" duration="614000" />
       <workItem from="1674306986257" duration="3606000" />
       <workItem from="1674635119905" duration="3582000" />
+      <workItem from="1676444290323" duration="11278000" />
     </task>
     <servers />
   </component>
