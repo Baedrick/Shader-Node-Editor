@@ -22,6 +22,8 @@ namespace ShaderNodeEditor
 		
 		private Matrix4 viewMatrix;
 		private Matrix4 projectionMatrix;
+
+		private ArcBallCamera camera;
 		
 		public Window(int width, int height, string title) : base(GameWindowSettings.Default, new NativeWindowSettings() { Size = (width, height), Title = title }) { }
 		
@@ -31,6 +33,8 @@ namespace ShaderNodeEditor
 			GL.ClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 			
 			GL.Enable(EnableCap.DepthTest);
+
+			camera = new ArcBallCamera(new Vector3(0, 0, -3.0f));
 			
 			vertexBufferObject = GL.GenBuffer();
 			GL.BindBuffer(BufferTarget.ArrayBuffer, vertexBufferObject);
@@ -63,8 +67,8 @@ namespace ShaderNodeEditor
 
 			texture0?.Use(TextureUnit.Texture0);
 			shader?.Use();
-			
-			viewMatrix = CameraUtils.CreateFpsViewMatrix(new Vector3(0.0f, 0.0f, -3.0f), 0.0f, 180.0f);
+
+			viewMatrix = camera.ViewMatrix;
 			projectionMatrix = Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(45f), Size.X / (float) Size.Y, 0.1f, 100.0f);
 			
 			for (var i = 0; i < meshPositions.Length; ++i) {
