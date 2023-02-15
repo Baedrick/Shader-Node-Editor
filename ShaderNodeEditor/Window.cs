@@ -12,17 +12,16 @@ namespace ShaderNodeEditor
 	public class Window : GameWindow
 	{
 		private static readonly DebugProc DEBUG_MESSAGE_DELEGATE = OnDebugMessage;
-		private float[] meshVertices = Cube.MESH;
-		private Vector3[] meshPositions = Cube.MESH_POSITIONS;
+		private readonly float[] meshVertices = Cube.MESH;
+		private readonly Vector3[] meshPositions = Cube.MESH_POSITIONS;
 		
 		private Shader? shader;
 		private Texture? texture0;
 		private int vertexArrayObject;
 		private int vertexBufferObject;
-
+		
 		private Matrix4 viewMatrix;
 		private Matrix4 projectionMatrix;
-		
 		
 		public Window(int width, int height, string title) : base(GameWindowSettings.Default, new NativeWindowSettings() { Size = (width, height), Title = title }) { }
 		
@@ -42,9 +41,6 @@ namespace ShaderNodeEditor
 
 			vertexArrayObject = GL.GenVertexArray();
 			GL.BindVertexArray(vertexArrayObject);
-			
-			//viewMatrix = Matrix4.CreateTranslation(0.0f, 0.0f, -3.0f);
-			projectionMatrix = Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(45f), Size.X / (float) Size.Y, 0.1f, 100.0f);
 			
 			var vertexPosition = shader.GetAttribLocation("aPosition");
 			GL.EnableVertexAttribArray(vertexPosition);
@@ -69,6 +65,7 @@ namespace ShaderNodeEditor
 			shader?.Use();
 			
 			viewMatrix = CameraUtils.CreateFpsViewMatrix(new Vector3(0.0f, 0.0f, -3.0f), 0.0f, 180.0f);
+			projectionMatrix = Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(45f), Size.X / (float) Size.Y, 0.1f, 100.0f);
 			
 			for (var i = 0; i < meshPositions.Length; ++i) {
 				var modelMatrix = Matrix4.CreateTranslation(meshPositions[i]);
